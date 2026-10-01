@@ -30,6 +30,7 @@
       margin: 0;
       padding: 12px;
       line-height: 1.6;
+      font-size: 17px; /* 全局字體整體加大 */
     }
 
     .container {
@@ -41,7 +42,7 @@
       text-align: center;
       background: linear-gradient(135deg, #6b8cce, #4a6fa5);
       color: white;
-      padding: 20px 15px;
+      padding: 22px 15px;
       border-radius: 16px;
       margin-bottom: 15px;
       box-shadow: 0 4px 12px rgba(74, 111, 165, 0.15);
@@ -49,20 +50,20 @@
 
     header h1 {
       margin: 0;
-      font-size: 1.6rem;
+      font-size: 1.9rem; /* 大標題加大 */
       letter-spacing: 1px;
     }
 
     header p {
-      margin: 4px 0 0 0;
+      margin: 6px 0 0 0;
       opacity: 0.95;
-      font-size: 0.9rem;
+      font-size: 1.05rem; /* 副標題加大 */
     }
 
     /* 置頂分頁選單 (Tabs) */
     .tab-nav {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
       padding-bottom: 8px;
       margin-bottom: 15px;
@@ -75,12 +76,12 @@
 
     .tab-btn {
       flex: 0 0 auto;
-      padding: 8px 14px;
+      padding: 10px 16px;
       border: 1px solid #cbd5e1;
       border-radius: 20px;
       background: white;
       color: #475569;
-      font-size: 0.85rem;
+      font-size: 1rem; /* 按鈕字體加大 */
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -105,27 +106,27 @@
     .flight-hotel-card {
       background: var(--card-bg);
       border-radius: 14px;
-      padding: 16px;
+      padding: 18px;
       margin-bottom: 20px;
       border: 1px solid var(--border);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .card-title {
-      font-size: 1.1rem;
+      font-size: 1.3rem; /* 標題加大 */
       font-weight: bold;
       color: var(--primary);
       border-bottom: 2px solid #cbd5e1;
-      padding-bottom: 6px;
+      padding-bottom: 8px;
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      font-size: 0.9rem;
+      gap: 14px;
+      font-size: 1.05rem; /* 基本資訊字體加大 */
     }
 
     @media (min-width: 600px) {
@@ -136,22 +137,22 @@
 
     .info-box {
       background: #f8fafc;
-      padding: 12px;
+      padding: 14px;
       border-radius: 10px;
-      border-left: 4px solid var(--primary);
+      border-left: 5px solid var(--primary);
     }
 
     .day-card {
       background: var(--card-bg);
       border-radius: 14px;
-      padding: 16px;
+      padding: 18px;
       margin-bottom: 22px;
       border: 1px solid var(--border);
       box-shadow: 0 2px 10px rgba(0,0,0,0.03);
     }
 
     .day-header {
-      font-size: 1.25rem;
+      font-size: 1.4rem; /* 日期標題加大 */
       font-weight: bold;
       color: #2d3748;
       margin-top: 0;
@@ -164,8 +165,8 @@
       display: flex;
       flex-direction: column;
       border-radius: 10px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
     }
 
     @media (min-width: 600px) {
@@ -174,21 +175,21 @@
         align-items: flex-start;
       }
       .item-time {
-        min-width: 125px;
+        min-width: 145px;
         margin-bottom: 0 !important;
       }
     }
 
     .item-time {
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 1.05rem; /* 時間欄位加大 */
       margin-bottom: 4px;
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .item-body {
       flex: 1;
-      font-size: 0.95rem;
+      font-size: 1.05rem; /* 內文內容加大 */
     }
 
     /* 溫和類別配色 */
@@ -198,26 +199,26 @@
     .info { background-color: var(--info-bg); color: var(--info-text); }
 
     .transit-step {
-      margin-top: 6px;
+      margin-top: 8px;
       padding-left: 8px;
-      font-size: 0.9rem;
-      line-height: 1.5;
+      font-size: 1rem; /* 交通轉乘細節加大 */
+      line-height: 1.6;
     }
 
     .badge {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2px 10px;
       border-radius: 6px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       font-weight: bold;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.7);
       margin-left: 6px;
     }
 
     a {
       color: inherit;
       text-decoration: underline;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     a:hover {
@@ -227,7 +228,7 @@
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: #718096;
     }
   </style>
@@ -396,7 +397,7 @@
             <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (N-18)</a> <strong>✗ JR 鹿兒島本線 (轉乘步行)</strong><br>
             ➢ JR 鹿兒島本線 (往 小倉 / 門司港 方向)<br>
             <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a> ➔ <a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站 (北口/綠口)</a> <strong>✗ 新宮町社區巴士 (Mainobus 相島線) (轉乘巴士)</strong><br>
-            <small style="color:#d9534f;">※ 出站經天橋行落地面，巴士站牌就在車站大樓正門口外</small>
+            <small style="color:#d9534f; font-weight:bold;">※ 出站經天橋行落地面，巴士站牌就在車站大樓正門口外</small>
           </div>
         </div>
       </div>
@@ -581,7 +582,7 @@
           <div class="transit-step">
             ➢ 地鐵機場線 (往 福岡空港 方向)<br>
             <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (K-11)</a> ➔ <a href="https://maps.google.com/?q=Fukuoka+Airport+Station" target="_blank">福岡機場站 (K-13)</a><br>
-            <small style="color:#d9534f;">※ 到站後搭乘免費接駁巴士前往國際線航廈 (約10-15分鐘)</small>
+            <small style="color:#d9534f; font-weight:bold;">※ 到站後搭乘免費接駁巴士前往國際線航廈 (約10-15分鐘)</small>
           </div>
         </div>
       </div>
