@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 福岡 6 天 5 夜自由行行程表</title>
+  <style>
+    :root {
+      --primary: #4a6fa5;
+      --bg: #f7f9fc;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+      --border: #e2e8f0;
+      
+      /* 溫和主題配色 */
+      --meal-bg: #fce8e6;       /* 柔和粉紅：餐飲 */
+      --meal-text: #a83232;
+      --spot-bg: #e8f4f8;       /* 柔和粉藍：景點/行程 */
+      --spot-text: #1d6a8a;
+      --transit-bg: #eaf5ea;    /* 柔和淡綠：交通路線 */
+      --transit-text: #276727;
+      --info-bg: #fff8e6;       /* 柔和淡黃：資訊/ Check-in */
+      --info-text: #8a6d1d;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 12px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, #6b8cce, #4a6fa5);
+      color: white;
+      padding: 20px 15px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(74, 111, 165, 0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 4px 0 0 0;
+      opacity: 0.95;
+      font-size: 0.9rem;
+    }
+
+    /* 置頂分頁選單 (Tabs) */
+    .tab-nav {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+      padding-top: 5px;
+    }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 8px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      background: white;
+      color: #475569;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 3px 8px rgba(74, 111, 165, 0.3);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .flight-hotel-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--primary);
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 600px) {
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .info-box {
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .day-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .day-header {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #2d3748;
+      margin-top: 0;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .item-row {
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .item-row {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .item-time {
+        min-width: 125px;
+        margin-bottom: 0 !important;
+      }
+    }
+
+    .item-time {
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      opacity: 0.9;
+    }
+
+    .item-body {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+
+    /* 溫和類別配色 */
+    .meal { background-color: var(--meal-bg); color: var(--meal-text); }
+    .spot { background-color: var(--spot-bg); color: var(--spot-text); }
+    .transit { background-color: var(--transit-bg); color: var(--transit-text); }
+    .info { background-color: var(--info-bg); color: var(--info-text); }
+
+    .transit-step {
+      margin-top: 6px;
+      padding-left: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      background: rgba(255,255,255,0.6);
+      margin-left: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #718096;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 標題欄 -->
+  <header>
+    <h1>2026 福岡 6 天 5 夜自由行</h1>
+    <p>日期：2026 年 10 月 15 日（四）－ 10 月 20 日（二）</p>
+  </header>
+
+  <!-- 置頂導覽按鈕 -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="openTab(event, 'info-tab')">ℹ️ 基本資訊</button>
+    <button class="tab-btn" onclick="openTab(event, 'day1')">Day 1 (10/15)</button>
+    <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2 (10/16)</button>
+    <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3 (10/17)</button>
+    <button class="tab-btn" onclick="openTab(event, 'day4')">Day 4 (10/18)</button>
+    <button class="tab-btn" onclick="openTab(event, 'day5')">Day 5 (10/19)</button>
+    <button class="tab-btn" onclick="openTab(event, 'day6')">Day 6 (10/20)</button>
+  </div>
+
+  <!-- 基本資訊頁面 -->
+  <div id="info-tab" class="tab-content active">
+    <div class="flight-hotel-card">
+      <div class="card-title">✈️ 航班與住宿基本資訊</div>
+      <div class="info-grid">
+        
+        <div class="info-box">
+          <strong>🛫 去程航班 (10/15)</strong><br>
+          • 香港快運 UO638 (A321)<br>
+          • 12:35 <a href="https://maps.google.com/?q=Hong+Kong+International+Airport" target="_blank">HKG 香港國際機場 T1</a> ➔ 17:00 <a href="https://maps.google.com/?q=Fukuoka+Airport" target="_blank">FUK 福岡國際機場</a>
+        </div>
+
+        <div class="info-box">
+          <strong>🛬 回程航班 (10/20)</strong><br>
+          • 香港快運 UO669 (A321neo)<br>
+          • 16:15 <a href="https://maps.google.com/?q=Fukuoka+Airport" target="_blank">FUK 福岡國際機場</a> ➔ 19:00 <a href="https://maps.google.com/?q=Hong+Kong+International+Airport" target="_blank">HKG 香港國際機場 T2</a>
+        </div>
+
+        <div class="info-box" style="grid-column: 1 / -1;">
+          <strong>🏨 住宿資訊</strong><br>
+          • 酒店：<a href="https://maps.google.com/?q=EN+HOTEL+Hakata" target="_blank">エンホテル博多 (EN博多酒店)</a><br>
+          • 地址：3 Chome-30-25 Hakata Ekimae, Hakata Ward, Fukuoka, 812-0011<br>
+          • 入住時間：10/15 15:00 後 | 退房時間：10/20 10:00 前<br>
+          • 鄰近車站：地鐵七隈線「櫛田神社前站」7號出口步行約 2 分鐘
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 1 頁面 -->
+  <div id="day1" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 1：10 月 15 日（星期四）抵達福岡</div>
+
+      <div class="item-row info"><div class="item-time">08:00 – 09:00</div><div class="item-body">搭車去 <a href="https://maps.google.com/?q=Hong+Kong+International+Airport+Terminal+1" target="_blank">機場 1 號/2 號客運大樓</a></div></div>
+      <div class="item-row info"><div class="item-time">09:00 – 09:30</div><div class="item-body">Check in</div></div>
+      <div class="item-row info"><div class="item-time">09:30 – 10:00</div><div class="item-body">過關</div></div>
+      <div class="item-row meal"><div class="item-time">10:00 – 11:30</div><div class="item-body">早餐</div></div>
+      <div class="item-row info"><div class="item-time">11:45 – 12:00</div><div class="item-body">登機</div></div>
+      <div class="item-row spot"><div class="item-time">12:35 – 17:00</div><div class="item-body">香港快運 UO638 航班</div></div>
+      <div class="item-row info"><div class="item-time">17:00 – 18:30</div><div class="item-body">過關、入境、取行李</div></div>
+      
+      <div class="item-row transit">
+        <div class="item-time">18:30 – 18:45</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=EN+HOTEL+Hakata" target="_blank">酒店 (EN HOTEL Hakata)</a></strong>
+          <div class="transit-step">
+            ➢ 機場線普通車 (往 筑前前原 / 姪浜 方向)<br>
+            <a href="https://maps.google.com/?q=Fukuoka+Airport+Station" target="_blank">福岡機場站 (K-13)</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (K-11)</a> <strong>✗ 七隈線 (轉乘步行)</strong><br>
+            ➢ 七隈線 (往 橋本 方向)<br>
+            <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (N-18)</a> ➔ <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ <strong>7號出口</strong> (步行約2分鐘)
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row info"><div class="item-time">18:45 – 19:30</div><div class="item-body">酒店 Check in</div></div>
+      <div class="item-row transit"><div class="item-time">19:30 – 20:00</div><div class="item-body">步行至 <a href="https://maps.google.com/?q=Nakasu+Yatai" target="_blank">中洲屋台橫丁</a></div></div>
+      <div class="item-row meal"><div class="item-time">20:00</div><div class="item-body">晚餐：<a href="https://maps.google.com/?q=Nakasu+Yatai" target="_blank">中洲屋台橫丁</a></div></div>
+    </div>
+  </div>
+
+  <!-- Day 2 頁面 -->
+  <div id="day2" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 2：10 月 16 日（星期五）太宰府 ➔ 大濠公園 ➔ 天神購物</div>
+
+      <div class="item-row meal"><div class="item-time">08:30 – 09:30</div><div class="item-body">早餐</div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">09:30 – 10:30</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Dazaifu+Station" target="_blank">太宰府站</a></strong>
+          <div class="transit-step">
+            ➢ 七隈線 (往 橋本 方向)<br>
+            <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ <a href="https://maps.google.com/?q=Yakuin+Station" target="_blank">藥院站 (N-14)</a> ➔ 西鐵天神大牟田線 (步行轉乘)<br>
+            ➢ 西鐵天神大牟田線 (往 太宰府 方向)<br>
+            <a href="https://maps.google.com/?q=Yakuin+Station" target="_blank">藥院站 (T-02)</a> ➔ <a href="https://maps.google.com/?q=Nishitetsu-Futsukaichi+Station" target="_blank">西鐵二日市車站 (T-13)</a> <strong>✗ 西鐵太宰府線 (站內轉乘)</strong><br>
+            ➢ 西鐵太宰府線 (往 太宰府 方向)<br>
+            <a href="https://maps.google.com/?q=Nishitetsu-Futsukaichi+Station" target="_blank">西鐵二日市車站 (T-13)</a> ➔ <a href="https://maps.google.com/?q=Dazaifu+Station" target="_blank">太宰府站 (D-02)</a> ➔ <strong>正門出口</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot">
+        <div class="item-time">10:30 – 12:30</div>
+        <div class="item-body">
+          • <a href="https://maps.google.com/?q=Dazaifu+Tenmangu+Omotesando" target="_blank">太宰府前表參道</a><br>
+          • <a href="https://maps.google.com/?q=Tenkai+Inari+Shrine" target="_blank">天開稻荷神社</a>
+        </div>
+      </div>
+
+      <div class="item-row meal"><div class="item-time">12:30 – 13:45</div><div class="item-body">午餐</div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">13:45 – 15:00</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Ohori+Park" target="_blank">大濠公園</a></strong>
+          <div class="transit-step">
+            ➢ 西鐵太宰府線 (往 二日市 方向)<br>
+            <a href="https://maps.google.com/?q=Dazaifu+Station" target="_blank">太宰府站 (D-02)</a> ➔ <a href="https://maps.google.com/?q=Nishitetsu-Futsukaichi+Station" target="_blank">西鐵二日市車站 (T-13)</a> <strong>✗ 西鐵天神大牟田線 (站內轉乘)</strong><br>
+            ➢ 西鐵天神大牟田線 (往 福岡/天神 方向)<br>
+            <a href="https://maps.google.com/?q=Nishitetsu-Futsukaichi+Station" target="_blank">西鐵二日市車站 (T-13)</a> ➔ <a href="https://maps.google.com/?q=Nishitetsu-Fukuoka+(Tenjin)+Station" target="_blank">西鐵福岡 (天神) 站 (T-01)</a> ➔ 地鐵機場線 (步行轉乘)<br>
+            ➢ 地鐵機場線 (往 姪浜 方向)<br>
+            <a href="https://maps.google.com/?q=Tenjin+Station" target="_blank">天神站 (K-08)</a> ➔ <a href="https://maps.google.com/?q=Ohorikoen+Station" target="_blank">大濠公園站 (K-06)</a> ➔ <strong>3號出口</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot"><div class="item-time">15:00 – 17:00</div><div class="item-body"><a href="https://maps.google.com/?q=Ohori+Park" target="_blank">大濠公園</a></div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">17:00 – 17:30</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Bic+Camera+Tenjin+1st+Store" target="_blank">BIC CAMERA</a></strong>
+          <div class="transit-step">
+            ➢ 地鐵機場線 (往 福岡空港 / 貝塚 方向)<br>
+            <a href="https://maps.google.com/?q=Ohorikoen+Station" target="_blank">大濠公園站 (K-06)</a> ➔ <a href="https://maps.google.com/?q=Tenjin+Station" target="_blank">天神站 (K-08)</a> ➔ <strong>天神地下街西12b出口 / 天神南站6號出口</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot"><div class="item-time">17:30 – 19:00</div><div class="item-body"><a href="https://maps.google.com/?q=Bic+Camera+Tenjin+1st+Store" target="_blank">BIC CAMERA 天神1號館</a></div></div>
+      <div class="item-row meal"><div class="item-time">19:00</div><div class="item-body">晚餐</div></div>
+    </div>
+  </div>
+
+  <!-- Day 3 頁面 -->
+  <div id="day3" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 3：10 月 17 日（星期六）相島（貓島）一日遊 ➔ 博多運河城</div>
+
+      <div class="item-row meal"><div class="item-time">08:30 – 09:30</div><div class="item-body">早餐</div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">09:30 – 10:30</div>
+        <div class="item-body">
+          <strong>搭車去 渡輪附近 JR 站 (<a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站</a>)</strong>
+          <div class="transit-step">
+            ➢ 七隈線 (往 博多 方向)<br>
+            <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (N-18)</a> <strong>✗ JR 鹿兒島本線 (轉乘步行)</strong><br>
+            ➢ JR 鹿兒島本線 (往 小倉 / 門司港 方向)<br>
+            <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a> ➔ <a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站 (北口/綠口)</a> <strong>✗ 新宮町社區巴士 (Mainobus 相島線) (轉乘巴士)</strong><br>
+            <small style="color:#d9534f;">※ 出站經天橋行落地面，巴士站牌就在車站大樓正門口外</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">10:30 – 11:00</div>
+        <div class="item-body">
+          <strong>搭車去 渡輪 (<a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港</a>)</strong>
+          <div class="transit-step">
+            ➢ 新宮町社區巴士 (Mainobus 相島線)<br>
+            <a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站 (相島線巴士站)</a> ➔ <a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港 (相島渡輪碼頭)</a> <strong>✗ 町營渡輪 (轉乘)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">11:30 – 12:00</div>
+        <div class="item-body">
+          <strong>搭船去 <a href="https://maps.google.com/?q=Ainoshima" target="_blank">相島 (貓島)</a></strong> <span class="badge">船程約17分鐘</span>
+          <div class="transit-step">
+            ➢ 新宮町營渡輪 (Shin-gu)<br>
+            <a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港</a> ➔ <a href="https://maps.google.com/?q=Ainoshima+Port" target="_blank">相島港</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row meal"><div class="item-time">12:00 – 13:00</div><div class="item-body">午餐</div></div>
+      <div class="item-row spot"><div class="item-time">13:00 – 15:30</div><div class="item-body"><a href="https://maps.google.com/?q=Ainoshima" target="_blank">相島 (貓島) 散步</a></div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">16:00 – 16:30</div>
+        <div class="item-body">
+          <strong>搭船去 渡輪 (<a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港</a>)</strong>
+          <div class="transit-step">
+            ➢ 新宮町營渡輪 (Shin-gu)<br>
+            <a href="https://maps.google.com/?q=Ainoshima+Port" target="_blank">相島港</a> ➔ <a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">16:30 – 17:00</div>
+        <div class="item-body">
+          <strong>搭車去 JR站 (<a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站</a>)</strong>
+          <div class="transit-step">
+            ➢ 新宮町社區巴士 (Mainobus 相島線) <span class="badge">16:22 班次</span><br>
+            <a href="https://maps.google.com/?q=Shingu+Port+Ferry+Terminal" target="_blank">新宮港 (相島渡輪碼頭)</a> ➔ <a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站 (相島線巴士站)</a> <strong>✗ JR 鹿兒島本線 (轉乘)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">17:00 – 17:30</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Canal+City+Hakata" target="_blank">博多運河城</a></strong>
+          <div class="transit-step">
+            ➢ JR 鹿兒島本線 (往 博多 / 久留米 方向)<br>
+            <a href="https://maps.google.com/?q=Fukukodaimae+Station" target="_blank">福工大前站</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (博多口)</a> ➔ <strong>步行 (約10分鐘至博多運河城)</strong><br>
+            <small>※ 備選：博多站轉乘七隈線至 <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ 1號出口步行3分鐘</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot"><div class="item-time">17:30 – 19:00</div><div class="item-body"><a href="https://maps.google.com/?q=Canal+City+Hakata" target="_blank">博多運河城</a></div></div>
+      <div class="item-row meal"><div class="item-time">19:00</div><div class="item-body">晚餐</div></div>
+    </div>
+  </div>
+
+  <!-- Day 4 頁面 -->
+  <div id="day4" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 4：10 月 18 日（星期日）熊本一日遊</div>
+
+      <div class="item-row meal"><div class="item-time">09:00 – 10:00</div><div class="item-body">早餐</div></div>
+      <div class="item-row transit"><div class="item-time">10:00 – 10:30</div><div class="item-body">步行去 <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a></div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">10:47 – 11:35</div>
+        <div class="item-body">
+          <strong>博多去熊本 (JR 新幹線)</strong> <span class="badge">TSUBAME 319 號車</span>
+          <div class="transit-step">
+            <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a> ➔ <a href="https://maps.google.com/?q=Kumamoto+Station" target="_blank">熊本站</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row meal"><div class="item-time">12:00 – 13:00</div><div class="item-body">午餐</div></div>
+
+      <div class="item-row spot">
+        <div class="item-time">13:00 – 17:00</div>
+        <div class="item-body">
+          • <a href="https://maps.google.com/?q=Nagasaki+Jiro+Kissaten" target="_blank">長崎次郎喫茶室</a><br>
+          • <a href="https://maps.google.com/?q=Sakura-no-baba+Josaien" target="_blank">櫻之馬場 興彩園 (Josaien)</a><br>
+          • <a href="https://maps.google.com/?q=Kumamoto+Castle" target="_blank">熊本城</a><br>
+          • <a href="https://maps.google.com/?q=Kato+Shrine" target="_blank">加藤神社</a>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">17:19 – 18:09</div>
+        <div class="item-body">
+          <strong>熊本去博多 (JR 新幹線)</strong> <span class="badge">TSUBAME 328 號車</span>
+          <div class="transit-step">
+            <a href="https://maps.google.com/?q=Kumamoto+Station" target="_blank">熊本站</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row meal"><div class="item-time">18:30</div><div class="item-body">晚餐</div></div>
+      <div class="item-row spot"><div class="item-time">19:30 – 21:00</div><div class="item-body"><a href="https://maps.google.com/?q=Yodobashi+Camera+Multimedia+Hakata" target="_blank">Yodobashi 友都八喜博多</a></div></div>
+    </div>
+  </div>
+
+  <!-- Day 5 頁面 -->
+  <div id="day5" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 5：10 月 19 日（星期一）由布院一日遊</div>
+
+      <div class="item-row meal"><div class="item-time">09:00 – 09:30</div><div class="item-body">早餐</div></div>
+      <div class="item-row transit"><div class="item-time">09:30 – 09:50</div><div class="item-body">步行去 <a href="https://maps.google.com/?q=Nishitetsu+Tenjin+高速Bus+Terminal" target="_blank">博多巴士總站 (3F 34號乘車處)</a></div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">09:18 – 11:17</div>
+        <div class="item-body">
+          <strong>博多去由布院 (高速巴士)</strong> <span class="badge">WILLER - 48204 班次</span>
+          <div class="transit-step">
+            博多巴士總站 ➔ 由布院站前巴士總站
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot">
+        <div class="item-time">11:30 – 16:30</div>
+        <div class="item-body">
+          • 午餐 & 散步美食：<a href="https://maps.google.com/?q=Milch+Yufuin" target="_blank">Milch 半熟芝士蛋糕/布甸</a>、<a href="https://maps.google.com/?q=Kikuchi+Dorayaki+Yufuin" target="_blank">鞠智銅鑼燒</a>、<a href="https://maps.google.com/?q=Nakatsu+Karaage+Yufuin" target="_blank">Nakatsu 炸雞</a><br>
+          • <a href="https://maps.google.com/?q=Yufuin+Floral+Village" target="_blank">湯布院花卉村 (Yufuin Floral Village)</a><br>
+          • <a href="https://maps.google.com/?q=Yufuin+Showakan" target="_blank">湯布院昭和館</a><br>
+          • <a href="https://maps.google.com/?q=Kinrin+Lake" target="_blank">金鱗湖</a><br>
+          • <a href="https://maps.google.com/?q=Tenso+Shrine+Yufuin" target="_blank">天祖神社</a>
+        </div>
+      </div>
+
+      <div class="item-row transit">
+        <div class="item-time">17:17 – 19:27</div>
+        <div class="item-body">
+          <strong>由布院去博多 (觀光特急由布院之森)</strong> <span class="badge">Yufuin no Mori 6</span>
+          <div class="transit-step">
+            <a href="https://maps.google.com/?q=Yufuin+Station" target="_blank">由布院站</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row meal"><div class="item-time">19:30</div><div class="item-body">晚餐</div></div>
+    </div>
+  </div>
+
+  <!-- Day 6 頁面 -->
+  <div id="day6" class="tab-content">
+    <div class="day-card">
+      <div class="day-header">🗓️ Day 6：10 月 20 日（星期二）博多地下街 ➔ 返港</div>
+
+      <div class="item-row meal"><div class="item-time">10:00 – 11:00</div><div class="item-body">早餐</div></div>
+      <div class="item-row info"><div class="item-time">11:00</div><div class="item-body">酒店 Check Out</div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">11:00 – 11:30</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站</a></strong>
+          <div class="transit-step">
+            ➢ 七隈線 (往 博多 方向)<br>
+            <a href="https://maps.google.com/?q=Kushida+Shrine+Station" target="_blank">櫛田神社前站 (N-17)</a> ➔ <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (N-18)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row spot"><div class="item-time">11:30 – 13:00</div><div class="item-body"><a href="https://maps.google.com/?q=Hakata+Station+Underground+Shopping+Street" target="_blank">博多站地下街</a> 購物散步</div></div>
+
+      <div class="item-row transit">
+        <div class="item-time">13:00 – 13:15</div>
+        <div class="item-body">
+          <strong>搭車去 <a href="https://maps.google.com/?q=Fukuoka+Airport" target="_blank">福岡機場</a></strong>
+          <div class="transit-step">
+            ➢ 地鐵機場線 (往 福岡空港 方向)<br>
+            <a href="https://maps.google.com/?q=Hakata+Station" target="_blank">博多站 (K-11)</a> ➔ <a href="https://maps.google.com/?q=Fukuoka+Airport+Station" target="_blank">福岡機場站 (K-13)</a><br>
+            <small style="color:#d9534f;">※ 到站後搭乘免費接駁巴士前往國際線航廈 (約10-15分鐘)</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-row info"><div class="item-time">13:15 – 13:45</div><div class="item-body">機場 Check in</div></div>
+      <div class="item-row info"><div class="item-time">13:45 – 14:00</div><div class="item-body">過關</div></div>
+      <div class="item-row meal"><div class="item-time">14:00 – 15:30</div><div class="item-body">午餐</div></div>
+      <div class="item-row info"><div class="item-time">15:30 – 15:45</div><div class="item-body">登機</div></div>
+      <div class="item-row spot"><div class="item-time">16:15 – 19:00</div><div class="item-body">香港快運 UO669 航班 (返抵香港 T2)</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 福岡 6 天 5 夜自由行 | 祝旅途愉快！</p>
+</footer>
+
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    
+    // 隱藏所有頁籤內容
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].classList.remove("active");
+    }
+
+    // 移除所有按鈕的 active 狀態
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+
+    // 顯示當前點擊的頁籤，並將該按鈕設為 active
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+
+    // 切換時自動回到頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
